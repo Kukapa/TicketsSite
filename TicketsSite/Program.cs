@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using TicketsSite.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 //DbContext configuration
-builder.Services.AddDbContext<AppDbContext>();
+builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer("DefaultConnectionString"));
 
 var app = builder.Build();
 

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Reflection.PortableExecutable;
 
 namespace TicketsSite.Models
 {
@@ -10,5 +11,7 @@ namespace TicketsSite.Models
         public string PictureUrl { get; set; }
         public string FullName { get; set; }
         public string Bio { get; set; }
+
+        public List<Movie> Movies { get; set; }
     }
 }

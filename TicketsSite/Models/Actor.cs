@@ -7,7 +7,7 @@ namespace TicketsSite.Models
         [Key]
         public int Id { get; set; }
 
-        [Display(Name = "Picture Url")]
+        [Display(Name = "Picture")]
         public string PictureUrl { get; set; }
         [Display(Name = "Full Name")]
         public string FullName { get; set; }

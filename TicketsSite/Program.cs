@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using TicketsSite.Data;
-using TicketsSite.Data.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,8 +8,6 @@ builder.Services.AddControllersWithViews();
 
 //DbContext configuration
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString")));
-
-builder.Services.AddScoped<IActorsService, ActorsService>();
 
 var app = builder.Build();
 

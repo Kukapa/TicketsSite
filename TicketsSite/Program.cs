@@ -10,9 +10,11 @@ builder.Services.AddControllersWithViews();
 
 //DbContext configuration
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString")));
-var app = builder.Build();
 
 builder.Services.AddScoped<IActorsService, ActorsService>();
+
+var app = builder.Build();
+ 
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

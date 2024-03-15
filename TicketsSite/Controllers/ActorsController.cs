@@ -82,7 +82,10 @@ namespace TicketsSite.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var actorDetails = await _service.GetByIdAsync(id);
-            if (actorDetails == null) return View("NotFound");
+            if (actorDetails == null)
+            {
+                return View("NotFound");
+            }
 
             await _service.DeleteAsync(id);
             return RedirectToAction(nameof(Index));

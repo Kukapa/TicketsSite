@@ -1,11 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.InteropServices.JavaScript;
+using TicketsSite.Data.Base;
 using TicketsSite.Data.Enums;
 
 namespace TicketsSite.Models
 {
-    public class Movie
+    public class Movie : IEntityBase
     {
         [Key]
         public int Id { get; set; }

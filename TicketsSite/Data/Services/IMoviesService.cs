@@ -11,5 +11,6 @@ namespace TicketsSite.Data.Services
         Task<NewMovieDropdownsVM> GetNewMovieDropdownsValues();
 
         Task AddNewMovieAsync(NewMovieVM data);
+        Task UpdateMovieAsync(NewMovieVM movie);
     }
 }

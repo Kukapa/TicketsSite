@@ -25,7 +25,7 @@ namespace TicketsSite.Models
 
         [Display(Name = "Movie poster Url")]
         [Required(ErrorMessage = "Movie poster Url is required")]
-        public string ImageURL { get; set; }
+        public string ImageUrl { get; set; }
 
         [Display(Name = "Movie start date")]
         [Required(ErrorMessage = "Start date is required")]

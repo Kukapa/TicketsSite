@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using TicketsSite.Data.Base;
 using TicketsSite.Data.ViewModels;
 using TicketsSite.Models;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace TicketsSite.Data.Services
 {
@@ -21,7 +22,7 @@ namespace TicketsSite.Data.Services
                 Name = data.Name,
                 Description = data.Description,
                 Price = data.Price,
-                ImageUrl = data.ImageURL,
+                ImageUrl = data.ImageUrl,
                 CinemaId = data.CinemaId,
                 StartDate = data.StartDate,
                 EndDate = data.EndDate,
@@ -64,6 +65,40 @@ namespace TicketsSite.Data.Services
             };
 
             return response;
+        }
+
+        public async Task UpdateMovieAsync(NewMovieVM data)
+        {
+            var dbMovie = await _context.Movies.FirstOrDefaultAsync(n => n.Id == data.Id);
+
+            if (dbMovie != null)
+            {
+                dbMovie.Name = data.Name;
+                dbMovie.Description = data.Description;
+                dbMovie.Price = data.Price;
+                dbMovie.ImageUrl = data.ImageUrl;
+                dbMovie.CinemaId = data.CinemaId;
+                dbMovie.StartDate = data.StartDate;
+                dbMovie.EndDate = data.EndDate;
+                dbMovie.MovieCategory = data.MovieCategory;
+                dbMovie.ProducerId = data.ProducerId;
+                await _context.SaveChangesAsync();
+            }
+
+            var existingActorsDb = _context.Actors_Movies.Where(n => n.MovieId == data.Id).ToList();
+            _context.Actors_Movies.RemoveRange(existingActorsDb);
+            await _context.SaveChangesAsync();
+
+            foreach (var actorId in data.ActorIds)
+            {
+                var newActorMovie = new Actor_Movie()
+                {
+                    MovieId = data.Id,
+                    ActorId = actorId
+                };
+                await _context.Actors_Movies.AddAsync(newActorMovie);
+            }
+            await _context.SaveChangesAsync();
         }
     }
 }

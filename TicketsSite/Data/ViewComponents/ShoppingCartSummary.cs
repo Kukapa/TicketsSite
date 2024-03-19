@@ -3,8 +3,7 @@ using TicketsSite.Data.Cart;
 
 namespace TicketsSite.Data.ViewComponents
 {
-    [ViewComponent]
-    public class ShoppingCartSummary
+    public class ShoppingCartSummary : ViewComponent
     {
         private readonly ShoppingCart _shoppingCart;
         public ShoppingCartSummary(ShoppingCart shoppingCart)
@@ -17,11 +16,6 @@ namespace TicketsSite.Data.ViewComponents
             var items = _shoppingCart.GetShoppingCartItems();
 
             return View(items.Count);
-        }
-
-        private IViewComponentResult View(int count)
-        {
-            throw new NotImplementedException();
         }
     }
 }

@@ -1,15 +1,13 @@
-﻿@model TicketsSite.Data.ViewModels.ShoppingCartVM
-
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model TicketsSite.Data.ViewModels.ShoppingCartVM
 @{
     ViewData["Title"] = "Shopping cart summary";
 }
-
 <div class="row">
     <div class="col-md-8 offset-2">
         <div class="text-center">
             <h2>You shopping cart summary</h2>
         </div>
-
         <table class="table">
             <thead>
                 <tr>
@@ -54,7 +52,7 @@
             </tfoot>
         </table>
 
-        <div class="text-right">
+        <div class="text-center">
             <div class="btn-group">
                 <a class="btn btn-outline-primary" asp-action="CompleteOrder">
                     Complete order
@@ -64,6 +62,5 @@
                 </a>
             </div>
         </div>
-
     </div>
 </div>

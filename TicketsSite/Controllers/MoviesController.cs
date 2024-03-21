@@ -33,9 +33,9 @@ namespace TicketsSite.Controllers
 
             if (!string.IsNullOrEmpty(searchString))
             {
-                var filteredResultNew = allMovies.Where(n => string.Equals(n.Name, searchString, StringComparison.CurrentCultureIgnoreCase) || string.Equals(n.Description, searchString, StringComparison.CurrentCultureIgnoreCase)).ToList();
+                var filteredResult = allMovies.Where(n => string.Equals(n.Name, searchString, StringComparison.CurrentCultureIgnoreCase) || string.Equals(n.Description, searchString, StringComparison.CurrentCultureIgnoreCase)).ToList();
 
-                return View("Index", filteredResultNew);
+                return View("Index", filteredResult);
             }
 
             return View("Index", allMovies);

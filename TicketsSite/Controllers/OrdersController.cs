@@ -1,11 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 using TicketsSite.Data.Cart;
 using TicketsSite.Data.Services;
 using TicketsSite.Data.ViewModels;
+using TicketsSite.Data.Static;
 
 namespace TicketsSite.Controllers
 {
+    [Authorize]
     public class OrdersController : Controller
     {
         private readonly IMoviesService _moviesService;

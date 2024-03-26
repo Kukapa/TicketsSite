@@ -1,6 +1,6 @@
 ﻿@inject UserManager<ApplicationUser> UserManager; 
 
-@if (!User.Identity.IsAuthenticated)
+@if (User.Identity != null && !User.Identity.IsAuthenticated)
 {
     <a class="btn btn-outline-success my-2 my-sm-0" asp-controller="Account" asp-action="Login">
         <i class="bi bi-box-arrow-in-right"></i> Log in
@@ -13,27 +13,17 @@
 }
 else
 {
-    <div class="dropdown">
-        <button class="btn btn-outline-success dropdown-toggle" type="button" id="profile-btn" data-toggle="dropdown"
-                aria-expanded="false">
-            <i class="bi bi-person-badge"></i> Hello @UserManager.GetUserName(User)
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="profile-btn">
-            <li>
-                <a class="dropdown-item" asp-controller="Orders" asp-action="Index">
-                    <i class="bi bi-list"></i> Orders
-                </a>
-            </li>
-
-            @if (User.IsInRole("Admin"))
-            {
-                <li>
-                    <a class="dropdown-item" asp-controller="Account" asp-action="Users">
-                        <i class="bi bi-people"></i> Users
-                    </a>
-                </li>
-            }
-        </ul>
+    <div class="btn btn-outline-success" type="button" id="profile-btn" aria-expanded="false">
+        <i class="bi bi-person-badge"></i> Hello @UserManager.GetUserName(User)
+    </div>
+    @if (User.IsInRole("Admin"))
+    {
+        <div class="nav-item">
+            <a class="nav-link text-dark" asp-controller="Account" asp-action="Users"><i class="bi bi-people"></i>Users</a>
+        </div>
+    }
+    <div class="nav-item">
+       <a class="nav-link text-dark" asp-controller="Orders" asp-action="Index"><i class="bi bi-list"></i>Orders</a>
     </div>
     <span style="padding: 5px;"></span>
     <form asp-controller="Account" asp-action="Logout">

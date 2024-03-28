@@ -32,10 +32,6 @@ namespace TicketsSite.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([Bind("FullName,PictureUrl,Bio")]Actor actor)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(actor);
-            }
             await _service.AddAsync(actor);
             return RedirectToAction(nameof(Index));
         }
@@ -68,10 +64,6 @@ namespace TicketsSite.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(int id, [Bind("Id, FullName,PictureUrl,Bio")] Actor actor)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(actor);
-            }
             await _service.UpdateAsync(id, actor);
             return RedirectToAction(nameof(Index));
         }

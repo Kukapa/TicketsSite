@@ -42,10 +42,6 @@ namespace TicketsSite.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([Bind("FullName,PictureUrl,Bio")] Producer producer)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(producer);
-            }
             await _service.AddAsync(producer);
             return RedirectToAction(nameof(Index));
         }
@@ -60,11 +56,6 @@ namespace TicketsSite.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(int id, [Bind("Id, FullName,PictureUrl,Bio")] Producer producer)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(producer);
-            }
-
             if (id == producer.Id)
             {
                 await _service.UpdateAsync(id, producer);
